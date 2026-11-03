@@ -1,0 +1,15 @@
+# Showcase fork only (never part of an upstream pull request).
+version: 1
+app:
+  install: "corepack enable && pnpm install --frozen-lockfile && pnpm --filter @reshaped/utilities --filter @reshaped/theming run build"
+  start: pnpm --filter reshaped exec storybook dev -p {port} --host 0.0.0.0 -c ../../.storybook --no-open --disable-telemetry
+  url: http://localhost:{port}
+  readyPath: /index.json
+  readyStatus: 200
+  runtime: node22
+  env:
+    NODE_ENV: development
+    CI: "1"
+demo:
+  maxVideos: 1
+  beforePass: true
